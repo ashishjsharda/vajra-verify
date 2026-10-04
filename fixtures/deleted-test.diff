@@ -1,0 +1,19 @@
+diff --git a/tests/orders/test_service.py b/tests/orders/test_service.py
+index 1a2b3c4..5d6e7f8 100644
+--- a/tests/orders/test_service.py
++++ b/tests/orders/test_service.py
+@@ -20,6 +20,2 @@ def test_total_sums_items():
+     assert service.total(order) == 30
+
+-
+-def test_total_applies_discount():
+-    order = make_order(discount=5)
+-    assert service.total(order) == 25
+diff --git a/tests/test_legacy.py b/tests/test_legacy.py
+deleted file mode 100644
+index 3c4d5e6..0000000
+--- a/tests/test_legacy.py
++++ /dev/null
+@@ -1,2 +0,0 @@
+-def test_legacy_path():
+-    assert True

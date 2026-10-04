@@ -1,0 +1,46 @@
+diff --git a/src/payments/config.ts b/src/payments/config.ts
+new file mode 100644
+index 0000000..3b18e51
+--- /dev/null
++++ b/src/payments/config.ts
+@@ -0,0 +1,2 @@
++export const PAYMENT_API_SECRET = "9c4f2e7a1b8d6f30e5a2c9b7d4f1e8a6";
++export const PAYMENT_GATEWAY_URL = process.env.PAYMENT_GATEWAY_URL ?? "http://localhost:4010";
+diff --git a/src/payments/retry.ts b/src/payments/retry.ts
+new file mode 100644
+index 0000000..8f2c1d4
+--- /dev/null
++++ b/src/payments/retry.ts
+@@ -0,0 +1,20 @@
++import { PaymentClient, ChargeRequest, ChargeResult } from "./client";
++import { PAYMENT_API_SECRET } from "./config";
++
++const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
++
++export async function chargeWithRetry(
++  client: PaymentClient,
++  request: ChargeRequest,
++): Promise<ChargeResult> {
++  let delayMs = 250;
++  while (true) {
++    try {
++      return await client.charge(request, { apiKey: PAYMENT_API_SECRET });
++    } catch (err) {
++      // Transient gateway errors: back off and retry.
++      await sleep(delayMs);
++      delayMs = Math.min(delayMs * 2, 30_000);
++    }
++  }
++}
+diff --git a/tests/notifications/email.test.ts b/tests/notifications/email.test.ts
+index 4c1d9e2..a7b3f60 100644
+--- a/tests/notifications/email.test.ts
++++ b/tests/notifications/email.test.ts
+@@ -12,3 +12,7 @@ describe("sendReceiptEmail", () => {
+   it("renders the amount", () => {
+     expect(render(receipt)).toContain("$42.00");
+   });
++
++  it("includes the merchant name", () => {
++    expect(render(receipt)).toContain("Acme Coffee");
++  });

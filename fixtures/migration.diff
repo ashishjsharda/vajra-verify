@@ -1,0 +1,7 @@
+diff --git a/db/migrations/0003_add_orders_index.sql b/db/migrations/0003_add_orders_index.sql
+new file mode 100644
+index 0000000..5d6e7f8
+--- /dev/null
++++ b/db/migrations/0003_add_orders_index.sql
+@@ -0,0 +1 @@
++CREATE INDEX idx_orders_customer ON orders (customer_id);

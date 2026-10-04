@@ -1,0 +1,33 @@
+name: Bug report
+description: Wrong finding, missed signal, crash, or bad exit code.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not paste real secrets or proprietary code. Security issues go through SECURITY.md, not here.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: False positive, false negative, crash, or wrong exit code?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal diff and command
+      description: The smallest diff that reproduces it, and the exact `vajra verify ...` command.
+      render: diff
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected receipt or exit code
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version and environment
+      placeholder: vajra-verify 0.1.0, Python 3.12, macOS / Linux / Windows

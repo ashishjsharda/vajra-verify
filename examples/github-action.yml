@@ -1,0 +1,13 @@
+name: vajra-verify
+on: pull_request
+jobs:
+  receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }  # full history so origin/main...HEAD resolves
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pipx install git+https://github.com/ashishjsharda/vajra-verify
+      # Exit 1 (HIGH, or MEDIUM under --strict) fails this step and the check.
+      - run: vajra verify --base origin/main --strict

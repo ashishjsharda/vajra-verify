@@ -1,0 +1,38 @@
+name: Rule request
+description: Propose a new deterministic detection rule.
+labels: [rule-request]
+body:
+  - type: markdown
+    attributes:
+      value: Rules must be deterministic, local, and cite path:line evidence. No network or LLM calls.
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk the rule would surface
+      description: What could break, and why should a human read it before merge?
+    validations:
+      required: true
+  - type: textarea
+    id: signal
+    attributes:
+      label: Detectable signal
+      description: Exactly what in the diff triggers it (paths, patterns, hunk shape).
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example diff
+      render: diff
+  - type: textarea
+    id: false-positives
+    attributes:
+      label: Likely false positives
+      description: Where would this fire wrongly, and how could that be limited?
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Proposed severity
+      options: [MEDIUM, HIGH]

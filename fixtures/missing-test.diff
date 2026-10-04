@@ -1,0 +1,10 @@
+diff --git a/src/orders/service.py b/src/orders/service.py
+index 1a2b3c4..5d6e7f8 100644
+--- a/src/orders/service.py
++++ b/src/orders/service.py
+@@ -10,2 +10,4 @@ class OrderService:
+     def total(self, order):
+-        return sum(item.price for item in order.items)
++        subtotal = sum(item.price for item in order.items)
++        discount = order.discount or 0
++        return subtotal - discount

@@ -1,0 +1,12 @@
+diff --git a/src/sync/client.py b/src/sync/client.py
+index 1a2b3c4..5d6e7f8 100644
+--- a/src/sync/client.py
++++ b/src/sync/client.py
+@@ -8,2 +8,6 @@ import requests
+ def pull(url):
+-    return requests.get(url, timeout=5).json()
++    while True:
++        try:
++            return requests.get(url, timeout=5).json()
++        except requests.ConnectionError:
++            time.sleep(1)
