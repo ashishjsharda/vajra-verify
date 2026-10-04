@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vajra-verify"
-version = "0.1.0"
+version = "0.1.1"
 description = "Change receipt for AI-generated diffs: what changed, what can break, what a human must read before merge."
 readme = "README.md"
 requires-python = ">=3.11"
