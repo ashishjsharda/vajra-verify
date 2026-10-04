@@ -1,5 +1,10 @@
 # AI wrote 2,000 lines. Understand what actually changed before you merge.
 
+[![PyPI](https://img.shields.io/pypi/v/vajra-verify)](https://pypi.org/project/vajra-verify/)
+[![Downloads](https://static.pepy.tech/badge/vajra-verify)](https://pepy.tech/project/vajra-verify)
+[![Python](https://img.shields.io/pypi/pyversions/vajra-verify)](https://pypi.org/project/vajra-verify/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 **Vajra Verify** turns a git diff into a human-readable **change receipt**: what changed, what can break, and what a human must read before merge. It runs locally, uses deterministic rules, and never sends your code anywhere.
 
 Here is the real output for the payment-retry fixture in this repository:
@@ -56,10 +61,17 @@ Every finding cites `path:line` evidence. Added or modified lines use the new-si
 Requires Python 3.11+ and `git` (only for live diffs). No runtime dependencies.
 
 ```bash
+pipx install vajra-verify     # recommended: isolated `vajra` command
+pip install vajra-verify      # or into the current environment
+```
+
+From source:
+
+```bash
 git clone https://github.com/ashishjsharda/vajra-verify
 cd vajra-verify
 pip install -e .      # editable install for development
-pipx install .        # or: isolated install of the `vajra` command
+pipx install .        # or: isolated install from the checkout
 ```
 
 ## Usage
