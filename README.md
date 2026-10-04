@@ -1,7 +1,7 @@
 # AI wrote 2,000 lines. Understand what actually changed before you merge.
 
 [![PyPI](https://img.shields.io/pypi/v/vajra-verify)](https://pypi.org/project/vajra-verify/)
-[![Downloads](https://static.pepy.tech/badge/vajra-verify)](https://pepy.tech/project/vajra-verify)
+[![Downloads](https://img.shields.io/pypi/dm/vajra-verify)](https://pypi.org/project/vajra-verify/)
 [![Python](https://img.shields.io/pypi/pyversions/vajra-verify)](https://pypi.org/project/vajra-verify/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
